@@ -1,0 +1,12 @@
+import cv2
+my=cv2.imread(r"C://Users\venna\Downloads//face detection.jpeg")
+my2=cv2.imread(r"C://Users\venna\Downloads//face detection.jpeg",0)
+facedetector=cv2.CascadeClassifier(r"C://Users\venna\Downloads//haarcascade_frontalface_default.xml")
+face=facedetector.detectMultiScale(my2,1.1,5)
+print('number of faces:')
+print(len(face))
+for x,y,z,h in face:
+    cv2.rectangle(my,(x,y),(x+z,y+h),(0,0,225),3)
+cv2.imshow("facedetective",my)
+cv2.waitKey(0)
+cv2.destroyallWindows()
