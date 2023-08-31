@@ -1,0 +1,17 @@
+import numpy as np
+import cv2
+
+
+def create_colored_boxes_image(size):
+    image = np.ones((size, size, 3), dtype=np.uint8) * 255
+    box_size = size // 10
+    image[:box_size, :box_size] = [0, 0, 0]
+    image[:box_size, -box_size:] = [255, 0, 0]
+    image[-box_size:, :box_size] = [0, 255, 0]
+    image[-box_size:, -box_size:] = [0, 0, 255]
+    return image
+image_size = int(input("Enter the size of the image: "))
+colored_boxes_image = create_colored_boxes_image(image_size)
+cv2.imshow("Colored Boxes Image", colored_boxes_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
