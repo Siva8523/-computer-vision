@@ -1,0 +1,22 @@
+import cv2
+
+def resize_image(input_image_path, output_image_path, new_width=None, new_height=None):
+    image = cv2.imread(input_image_path)
+
+    if new_width is None:
+        new_width = int(image.shape[1] * (new_height / image.shape[0]))
+    elif new_height is None:
+        new_height = int(image.shape[0] * (new_width / image.shape[1]))
+
+    resized_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
+
+    cv2.imwrite(output_image_path, resized_image)
+
+if __name__ == "__main__":
+    input_image_path = "C://Users//venna//OneDrive//Pictures//Screenshots//smiling.jpeg"
+    output_bigger_image_path = "C://Users//venna//OneDrive//Pictures//Screenshots//Screenshot 2023-09-06 212051.png"
+    output_smaller_image_path = "C://Users//venna//OneDrive//Pictures//Screenshots//wolf.jpeg"
+
+    resize_image(input_image_path, output_bigger_image_path, new_width=800, new_height=600)
+
+    resize_image(input_image_path, output_smaller_image_path, new_width=200, new_height=200)
